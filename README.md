@@ -33,3 +33,9 @@ dotnet run
   "MySQLConnectionString": "Server=localhost;DataBase=rest_with_asp_net;Uid=root;Pwd=admin123"
 },
 ```
+## Versioning api
+### ASP.NET Core
+- Link : https://github.com/dotnet/aspnet-api-versioning
+### Nuget dependency 
+- Microsoft.AspNetCore.Mvc.Versioning
+- Version : 4.1.1
