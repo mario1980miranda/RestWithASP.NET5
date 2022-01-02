@@ -24,6 +24,12 @@ dotnet run
 ```
 
 ## Database dependency
-Nuget : 
+### Nuget : 
 - Pomelo.EntityFrameworkCore.MySql
 - 3.2.0
+### appsettings.json
+```json
+"MySQLConnection": {
+  "MySQLConnectionString": "Server=localhost;DataBase=rest_with_asp_net;Uid=root;Pwd=admin123"
+},
+```
