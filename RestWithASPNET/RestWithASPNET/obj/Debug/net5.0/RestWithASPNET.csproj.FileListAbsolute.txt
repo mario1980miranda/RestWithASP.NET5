@@ -21,3 +21,13 @@ C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\ref\RestWithASPNET.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.pdb
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.genruntimeconfig.cache
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.Bcl.HashCode.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\MySqlConnector.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Pomelo.JsonObject.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.csproj.CopyComplete
