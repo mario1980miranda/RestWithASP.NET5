@@ -22,3 +22,8 @@ dotnet sln add .\RestWithASPNET\RestWithASPNET.csproj
 ```bash
 dotnet run
 ```
+
+## Database dependency
+Nuget : 
+- Pomelo.EntityFrameworkCore.MySql
+- 3.2.0
