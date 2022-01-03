@@ -33,3 +33,15 @@ C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.csproj.CopyComplete
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.MvcApplicationPartsAssemblyInfo.cs
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Evolve.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.AspNetCore.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Extensions.Hosting.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Settings.Configuration.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.Console.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.File.dll
