@@ -40,6 +40,7 @@ dotnet run
 - Microsoft.AspNetCore.Mvc.Versioning
 - Version : 4.1.1
 ## Migrations
+### Nuget dependencies
 - Evolve (Database migration tool) - Version : 2.4.0
 - Serilog (Simple .NET logging) - Version : 2.10.0
 - Serilog.AspNetCore - Version : 3.4.0
