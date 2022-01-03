@@ -4,19 +4,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RestWithASPNET.Services.Implementations
+namespace RestWithASPNET.Repository.Implementations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonRepositoryImplementation : IPersonRepository
     {
         #region Properties
         private MySQLContext _context;
         #endregion
+
         #region Constructors
-        public PersonServiceImplementation(MySQLContext context) 
+        public PersonRepositoryImplementation(MySQLContext context) 
         {
             _context = context;
         }
         #endregion
+
         #region Public methods
         public List<Person> FindAll()
         {
@@ -77,9 +79,8 @@ namespace RestWithASPNET.Services.Implementations
                 }
             }
         }
-        #endregion
-        #region Private methods
-        private bool Exists(long id)
+        
+        public bool Exists(long id)
         {
             return _context.Persons.Any(p => p.Id.Equals(id));
         }
