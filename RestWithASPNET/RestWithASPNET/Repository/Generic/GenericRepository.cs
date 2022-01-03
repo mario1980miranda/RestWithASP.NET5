@@ -1,76 +1,85 @@
-﻿using RestWithASPNET.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RestWithASPNET.Model.Base;
 using RestWithASPNET.Model.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RestWithASPNET.Repository.Implementations
+namespace RestWithASPNET.Repository.Generic
 {
-    public class PersonRepositoryImplementation : IPersonRepository
+    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
     {
         #region Properties
         private MySQLContext _context;
+
+        private DbSet<T> dataset;
         #endregion
 
         #region Constructors
-        public PersonRepositoryImplementation(MySQLContext context) 
+        public GenericRepository(MySQLContext context)
         {
             _context = context;
+            dataset = _context.Set<T>();
         }
         #endregion
 
         #region Public methods
-        public List<Person> FindAll()
+        public List<T> FindAll()
         {
-            return _context.Persons.ToList();
+            return dataset.ToList();
         }
-        public Person FindById(long id)
+
+        public T FindById(long id)
         {
-            return _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+            return dataset.SingleOrDefault(i => i.Id.Equals(id));
         }
-        public Person Create(Person person)
+
+        public T Create(T item)
         {
             try
             {
-                _context.Add(person);
+                dataset.Add(item);
                 _context.SaveChanges();
+                return item;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 throw;
             }
-            return person;
         }
-        public Person Update(Person person)
-        {
-            if (!Exists(person.Id)) return null;
 
-            var result = _context.Persons.SingleOrDefault(p => p.Id.Equals(person.Id));
+        public T Update(T item)
+        {
+            var result = dataset.SingleOrDefault(i => i.Id.Equals(item.Id));
 
             if (result != null)
             {
                 try
                 {
-                    _context.Entry(result).CurrentValues.SetValues(person);
+                    _context.Entry(result).CurrentValues.SetValues(item);
                     _context.SaveChanges();
+                    return result;
                 }
                 catch (Exception)
                 {
                     throw;
                 }
             }
-
-            return person;
+            else
+            {
+                return null;
+            }
         }
+
         public void Delete(long id)
         {
-            var result = _context.Persons.SingleOrDefault(p => p.Id.Equals(id));
+            var result = dataset.SingleOrDefault(i => i.Id.Equals(id));
 
             if (result != null)
             {
                 try
                 {
-                    _context.Persons.Remove(result);
+                    dataset.Remove(result);
                     _context.SaveChanges();
                 }
                 catch (Exception)
@@ -79,10 +88,10 @@ namespace RestWithASPNET.Repository.Implementations
                 }
             }
         }
-        
+
         public bool Exists(long id)
         {
-            return _context.Persons.Any(p => p.Id.Equals(id));
+            return dataset.Any(i => i.Id.Equals(id));
         }
         #endregion
     }

@@ -10,11 +10,11 @@ namespace RestWithASPNET.Business.Implementations
     public class BookBusinessImplementation : IBookBusiness
     {
         #region Properties
-        private readonly IBookRepository _repository;
+        private readonly IRepository<Book> _repository;
         #endregion
 
         #region Constructors
-        public BookBusinessImplementation(IBookRepository repository) 
+        public BookBusinessImplementation(IRepository<Book> repository) 
         {
             _repository = repository;
         }
