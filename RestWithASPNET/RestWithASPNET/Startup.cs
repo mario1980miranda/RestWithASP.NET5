@@ -4,15 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Net.Http.Headers;
+using RestWithASPNET.Model.Context;
 using RestWithASPNET.Business;
 using RestWithASPNET.Business.Implementations;
-using RestWithASPNET.Model.Context;
 using RestWithASPNET.Repository;
-using RestWithASPNET.Repository.Generic;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using RestWithASPNET.Repository.Generic;
+using Microsoft.Net.Http.Headers;
+using RestWithASPNET.Hypermedia.Filters;
+using RestWithASPNET.Hypermedia.Enricher;
 
 namespace RestWithASPNET
 {
@@ -57,6 +59,14 @@ namespace RestWithASPNET
             }).AddXmlSerializerFormatters();
             #endregion
 
+            #region HATEOAS
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ContentResponseEnricherList.Add(new PersonEnricher());
+            filterOptions.ContentResponseEnricherList.Add(new BookEnricher());
+
+            services.AddSingleton(filterOptions);
+            #endregion
+
             #region Api Versioning
             services.AddApiVersioning();
             #endregion
@@ -87,6 +97,7 @@ namespace RestWithASPNET
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
             });
         }
 
@@ -98,7 +109,7 @@ namespace RestWithASPNET
                 var evolve = new Evolve.Evolve(evolveConnection, msg => Log.Information(msg))
                 {
                     Locations = new List<string> { "db/migrations", "db/dataset" },
-                    IsEraseDisabled = true
+                    IsEraseDisabled = true,
                 };
                 evolve.Migrate();
             }
