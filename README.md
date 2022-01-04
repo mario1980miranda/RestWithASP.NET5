@@ -45,3 +45,17 @@ dotnet run
 - Serilog (Simple .NET logging) - Version : 2.10.0
 - Serilog.AspNetCore - Version : 3.4.0
 - Serilog.Sinks.Console Version : 3.1.1
+## Contract negociation
+### Nuget dependencies
+- Microsoft.AspNetCore.Mvc.Formatters.Xml - Version : 2.2.0
+- Add config on StartUp
+```csharp
+  services.AddMvc(options =>
+  {
+      options.RespectBrowserAcceptHeader = true;
+
+      options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("application/xml"));
+      options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+
+  }).AddXmlSerializerFormatters();
+```
