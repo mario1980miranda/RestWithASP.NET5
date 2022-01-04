@@ -1,9 +1,8 @@
-﻿using RestWithASPNET.Model;
-using RestWithASPNET.Model.Context;
+﻿using RestWithASPNET.Data.Converter.Implementations;
+using RestWithASPNET.Data.VO;
+using RestWithASPNET.Model;
 using RestWithASPNET.Repository;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace RestWithASPNET.Business.Implementations
 {
@@ -11,35 +10,42 @@ namespace RestWithASPNET.Business.Implementations
     {
         #region Properties
         private readonly IRepository<Person> _repository;
+
+        private readonly PersonConverter _converter;
         #endregion
 
         #region Constructors
         public PersonBusinessImplementation(IRepository<Person> repository) 
         {
             _repository = repository;
+            _converter = new PersonConverter();
 
         }
         #endregion
 
         #region Public methods
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _repository.FindAll();
+            return _converter.Parse(_repository.FindAll());
         }
 
-        public Person FindById(long id)
+        public PersonVO FindById(long id)
         {
-            return _repository.FindById(id);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO person)
         {
-            return _repository.Create(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-            return _repository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)

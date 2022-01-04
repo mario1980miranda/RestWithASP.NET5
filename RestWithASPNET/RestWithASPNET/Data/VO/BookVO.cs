@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestWithASPNET.Model
+namespace RestWithASPNET.Data.VO
 {
     public class BookVO
     {
