@@ -36,6 +36,7 @@ namespace RestWithASPNET
         {
             services.AddControllers();
 
+            #region Database configuration and migration
             var connection = Configuration["MySQLConnection:MySQLConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
 
@@ -43,7 +44,9 @@ namespace RestWithASPNET
             {
                 MigrateDatabase(connection);
             }
+            #endregion
 
+            #region Content negotiation configuration
             services.AddMvc(options =>
             {
                 options.RespectBrowserAcceptHeader = true;
@@ -52,14 +55,19 @@ namespace RestWithASPNET
                 options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
 
             }).AddXmlSerializerFormatters();
+            #endregion
 
+            #region Api Versioning
             services.AddApiVersioning();
+            #endregion
 
+            #region Dependency injection and generic entity injection
             // Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation>();
 
             services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
