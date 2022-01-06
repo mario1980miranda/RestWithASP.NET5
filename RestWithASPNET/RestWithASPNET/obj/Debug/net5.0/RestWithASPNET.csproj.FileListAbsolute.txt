@@ -45,3 +45,7 @@ C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.Console.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

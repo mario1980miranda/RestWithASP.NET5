@@ -15,6 +15,7 @@ using RestWithASPNET.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using RestWithASPNET.Hypermedia.Filters;
 using RestWithASPNET.Hypermedia.Enricher;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithASPNET
 {
@@ -71,6 +72,24 @@ namespace RestWithASPNET
             services.AddApiVersioning();
             #endregion
 
+            #region Swagger support
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1",
+                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title = "REST API's from Zero to Azure with ASP.NET Core #5 and Docker",
+                        Version = "V1",
+                        Description = "API RESTFull developed in course 'REST API's from Zero to Azure with ASP.NET Core #5 and Docker'",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact
+                        {
+                            Name = "Mario Luiz Miranda",
+                            Url = new Uri("https://github.com/mario1980miranda")
+                        }
+                    });
+            });
+            #endregion
+
             #region Dependency injection and generic entity injection
             // Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
@@ -92,13 +111,27 @@ namespace RestWithASPNET
 
             app.UseRouting();
 
+            #region Cfg swagger
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "REST API's from Zero to Azure with ASP.NET Core #5 and Docker");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
+            #endregion
+
             app.UseAuthorization();
 
+            #region Api Versioning
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
             });
+            #endregion
         }
 
         private void MigrateDatabase(string connection)
