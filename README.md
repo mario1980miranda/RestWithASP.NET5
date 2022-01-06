@@ -23,7 +23,7 @@ dotnet run
 ```
 
 ## Database dependency
-### Nuget : 
+### Nuget dependencies : 
 - Pomelo.EntityFrameworkCore.MySql
 - 3.2.0
 ### appsettings.json
@@ -32,13 +32,58 @@ dotnet run
   "MySQLConnectionString": "Server=localhost;DataBase=rest_with_asp_net;Uid=root;Pwd=admin123"
 },
 ```
+### StartUp configurations
+#### Configure Services
+```csharp
+var connection = Configuration["MySQLConnection:MySQLConnectionString"];
+services.AddDbContext<MySQLContext>(options => options.UseMySql(connection));
+
+if (Environment.IsDevelopment())
+{
+    MigrateDatabase(connection);
+}
+```
+#### New method
+```csharp
+private void MigrateDatabase(string connection)
+{
+    try
+    {
+        var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connection);
+        var evolve = new Evolve.Evolve(evolveConnection, msg => Log.Information(msg))
+        {
+            Locations = new List<string> { "db/migrations", "db/dataset" },
+            IsEraseDisabled = true,
+        };
+        evolve.Migrate();
+    }
+    catch (Exception ex)
+    {
+        Log.Error("Database migration failed", ex);
+        throw;
+    }
+}
+ ```
 
 ## Versioning api
-### ASP.NET Core
+### ASP.NET Core documentation
 - Link : https://github.com/dotnet/aspnet-api-versioning
 ### Nuget dependency 
 - Microsoft.AspNetCore.Mvc.Versioning
 - Version : 4.1.1
+### StartUp
+#### Configure Service
+```csharp
+services.AddApiVersioning();
+```
+#### Configure
+```csharp
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
+});
+```
 
 ## Migrations
 ### Nuget dependencies
@@ -50,7 +95,7 @@ dotnet run
 ## Content negociation
 ### Nuget dependencies
 - Microsoft.AspNetCore.Mvc.Formatters.Xml - Version : 2.2.0
-- Add config on StartUp
+### Add config on StartUp
 ```csharp
   services.AddMvc(options =>
   {
@@ -61,11 +106,11 @@ dotnet run
 
   }).AddXmlSerializerFormatters();
 ```
-
 ## Adding support to swagger
 ### Nuget dependencies
 - Swashbuckle.AspNetCore - Version : 5.6.1
-- Change class StartUp
+### Change class StartUp
+#### Configure Services
 ```csharp
 services.AddSwaggerGen(c =>
 {
@@ -82,4 +127,50 @@ services.AddSwaggerGen(c =>
             }
         });
 });
+```
+#### Configure
+```csharp
+app.UseSwagger();
+app.UseSwaggerUI(c => 
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "REST API's from Zero to Azure with ASP.NET Core #5 and Docker");
+});
+
+var option = new RewriteOptions();
+option.AddRedirect("^$", "swagger");
+app.UseRewriter(option);
+```
+#### Remove launchUrl property from launchSettings.json
+```json
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:8120",
+      "sslPort": 44300
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      ~~"launchUrl": "api/person/v1",~~
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "RestWithASPNET": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": true,
+      ~~"launchUrl": "api/person/v1",~~
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
 ```
