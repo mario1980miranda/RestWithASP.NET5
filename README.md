@@ -174,3 +174,41 @@ app.UseRewriter(option);
   }
 }
 ```
+## Cors
+### Startup
+#### ConfigureServices
+<mark>Must be before add controllers</mark>, 
+```csharp
+services.AddCors(options => options.AddDefaultPolicy(builder =>
+    {
+        builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    }));
+
+services.AddControllers();
+```
+#### Configure
+<mark>Must be **AFTER** UseHttpsRedirection() and UseRouting() and **BEFORE** UseEndpoints(...</mark>.
+```csharp
+  app.UseHttpsRedirection();
+  app.UseRouting();
+
+  #region CORS
+  app.UseCors();
+  #endregion
+
+  #region Cfg swagger
+  app.UseSwagger();
+  
+  // some code omited for practical reasons
+  
+  #region Api Versioning
+  app.UseEndpoints(endpoints =>
+  {
+      endpoints.MapControllers();
+      endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
+  });
+  #endregion
+```
