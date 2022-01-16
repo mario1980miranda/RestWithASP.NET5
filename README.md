@@ -212,3 +212,9 @@ services.AddControllers();
   });
   #endregion
 ```
+## Auth JWT
+### Dependencies
+- Microsoft.AspNetCore.Authentication.JwtBearer
+- Version : 3.1.8
+### Add Migrations
+- Add migrations for user login table
