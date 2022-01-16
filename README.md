@@ -218,3 +218,45 @@ services.AddControllers();
 - Version : 3.1.8
 ### Add Migrations
 - Add migrations for user login table
+### Add Startup configurations
+```csharp
+services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
+
+services.AddTransient<ITokenService, TokenService>();
+
+services.AddScoped<IUserRepository, UserRepository>();
+```
+### Add token configuration injection on Startup class
+```csharp
+var tokenConfigurations = new TokenConfiguration();
+
+new ConfigureFromConfigurationOptions<TokenConfiguration>(
+    Configuration.GetSection("TokenConfiguration")
+).Configure(tokenConfigurations);
+
+services.AddSingleton(tokenConfigurations);
+```
+### Define authentication and authorization parameters
+```csharp
+services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options => {
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = tokenConfigurations.Issuer,
+        ValidAudience = tokenConfigurations.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfigurations.Secret))
+    };
+});
+
+services.AddAuthorization(auth =>
+{
+    auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+        .RequireAuthenticatedUser().Build());
+});
+```
