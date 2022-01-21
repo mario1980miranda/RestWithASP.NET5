@@ -7,7 +7,6 @@ C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\RestWithASPNET.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\ref\RestWithASPNET.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\RestWithASPNET.pdb
-C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.csproj.AssemblyReference.cache
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.GeneratedMSBuildEditorConfig.editorconfig
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.AssemblyInfoInputs.cache
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.AssemblyInfo.cs
@@ -49,3 +48,11 @@ C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\dev\ws\csharp\RestWithASP.NET5\RestWithASPNET\RestWithASPNET\obj\Debug\net5.0\RestWithASPNET.csproj.AssemblyReference.cache

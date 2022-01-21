@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RestWithASPNET.Business;
 using RestWithASPNET.Data.VO;
@@ -9,23 +10,24 @@ namespace RestWithASPNET.Controllers
 {
     [ApiVersion("1")]
     [ApiController]
+    //[Authorize("Bearer")]
     [Route("api/[controller]/v{version:apiVersion}")]
     public class BookController : ControllerBase
     {
-        #region Properties
+
         private readonly ILogger<BookController> _logger;
         private IBookBusiness _bookBusiness;
-        #endregion
 
-        #region Contructors
+        // Injection of an instance of IBookService
+        // when creating an instance of BookController
         public BookController(ILogger<BookController> logger, IBookBusiness bookBusiness)
         {
             _logger = logger;
             _bookBusiness = bookBusiness;
         }
-        #endregion
 
-        #region Public methods
+        // Maps GET requests to https://localhost:{port}/api/book
+        // Get no parameters for FindAll -> Search All
         [HttpGet]
         [ProducesResponseType((200), Type = typeof(List<BookVO>))]
         [ProducesResponseType(204)]
@@ -37,8 +39,12 @@ namespace RestWithASPNET.Controllers
             return Ok(_bookBusiness.FindAll());
         }
 
+        // Maps GET requests to https://localhost:{port}/api/book/{id}
+        // receiving an ID as in the Request Path
+        // Get with parameters for FindById -> Search by ID
         [HttpGet("{id}")]
         [ProducesResponseType((200), Type = typeof(BookVO))]
+        [ProducesResponseType(204)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
@@ -80,6 +86,5 @@ namespace RestWithASPNET.Controllers
             _bookBusiness.Delete(id);
             return NoContent();
         }
-        #endregion
     }
 }
