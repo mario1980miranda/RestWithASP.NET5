@@ -46,6 +46,22 @@ namespace RestWithASPNET.Repository
             return result;
         }
 
+        public User ValidadeCredentials(string userName)
+        {
+            return _context.Users.SingleOrDefault(u => (u.UserName == userName));
+        }
+
+        public bool RevokeToken(string userName)
+        {
+            var user = _context.Users.SingleOrDefault(u => (u.UserName == userName));
+
+            if (user is null) return false;
+
+            user.RefreshToken = null;
+            _context.SaveChanges();
+            return true;
+        }
+
         private string ComputHash(string input, SHA256CryptoServiceProvider algorithm)
         {
             Byte[] inputBytes = Encoding.UTF8.GetBytes(input);
